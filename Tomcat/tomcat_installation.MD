@@ -14,13 +14,13 @@ Download tomcat packages from  https://tomcat.apache.org/download-80.cgi onto /o
 ```
 give executing permissions to startup.sh and shutdown.sh which are under bin. 
 ```sh
-   chmod +x /opt/apache-tomcat-8.5.35/bin/startup.sh shutdown.sh
+   chmod +x /opt/apache-tomcat-8.5.45/bin/startup.sh shutdown.sh
 ```
 
 create link files for tomcat startup.sh and shutdown.sh 
 ```sh
-  ln -s /opt/apache-tomcat-8.5.35/bin/startup.sh /usr/local/bin/tomcatup
-  ln -s /opt/apache-tomcat-8.5.35/bin/shutdown.sh /usr/local/bin/tomcatdown
+  ln -s /opt/apache-tomcat-8.5.45/bin/startup.sh /usr/local/bin/tomcatup
+  ln -s /opt/apache-tomcat-8.5.45/bin/shutdown.sh /usr/local/bin/tomcatdown
   tomcatup
 ```
 #### check point :
