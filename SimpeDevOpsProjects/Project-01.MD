@@ -21,7 +21,7 @@ We know how to use work with each and Git, Jenkins independently. What if you wa
 ### Part-02: Adding Deployment Steps 
 in this port we are going to install 'deploy to container' plugin. this is need to deploy on tomcat server which we are using. 
 
-- Install maven plugin without restart  
+- Install deploy to container plugin without restart  
   - `Manage Jenkins` > `Jenkins Plugins` > `available` > `deploy to container`
  
 To deploy our build artifacts on tomcat server our Jenkins server need access. For this we should setup credentials. This option is available in Jenkins home page
