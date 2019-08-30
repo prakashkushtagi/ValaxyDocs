@@ -6,48 +6,68 @@
 
 ### Install Apache Tomcat
 Download tomcat packages from  https://tomcat.apache.org/download-80.cgi onto /opt on EC2 instance
+
 ```sh 
   # create tomcat directory
   cd /opt
   wget http://apachemirror.wuchna.com/tomcat/tomcat-8/v8.5.45/bin/apache-tomcat-8.5.45.tar.gz
   tar -xvzf /opt/apache-tomcat-8.5.45.tar.gz
 ```
+
 give executing permissions to startup.sh and shutdown.sh which are under bin. 
+
 ```sh
    chmod +x /opt/apache-tomcat-8.5.45/bin/startup.sh shutdown.sh
 ```
+
 #### check point :
 access tomcat application from browser on prot 8080  
 http://<Public_IP>:8080
 
 Using unique ports for each application is a best practice in an environment. But tomcat and Jenkins runs on ports number 8080. Hence lets change tomcat port number to 8090. Change port number in conf/server.xml file under tomcat home
+
 ```sh
 cd /opt/apache-tomcat-8.5.45/conf
+```
+
 # update port number in the "connecter port" field in server.xml
 # restart tomcat after configuration update
-tomcatdown
-tomcatup
+
+```sh
+/opt/apache-tomcat-8.5.45/bin/shutdown.sh
+/opt/apache-tomcat-8.5.45/bin/startup.sh
 ```
+
 #### check point :
+
 access tomcat application from browser on prot 8090  
+```sh
 http://<Public_IP>:8090
+```
 
 now application is accessible on port 8090. but tomcat application doesnt allow to login from browser. changing a default parameter in context.xml does address this issue
+
 ```sh
 #search for context.xml
 find / -name context.xml
-```
+````
+
 above command gives 3 context.xml files. comment (<!-- & -->) `Value ClassName` field on files which are under webapp directory. 
 After that restart tomcat services to effect these changes
 
+````sh
 vi /opt/apache-tomcat-8.5.45/webapps/manager/META-INF/context.xml
 vi /opt/apache-tomcat-8.5.45/webapps/host-manager/META-INF/context.xml
+```
 
+```sh
 /opt/apache-tomcat-8.5.45/bin/shutdown.sh
 /opt/apache-tomcat-8.5.45/bin/startup.sh
+```
 
 Update users information in the tomcat-users.xml file
 goto tomcat home directory and Add below users to conf/tomcat-user.xml file
+
 ```sh
 	<role rolename="manager-gui"/>
 	<role rolename="manager-script"/>
