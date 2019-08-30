@@ -16,13 +16,6 @@ give executing permissions to startup.sh and shutdown.sh which are under bin.
 ```sh
    chmod +x /opt/apache-tomcat-8.5.45/bin/startup.sh shutdown.sh
 ```
-
-create link files for tomcat startup.sh and shutdown.sh 
-```sh
-  ln -s /opt/apache-tomcat-8.5.45/bin/startup.sh /usr/local/bin/tomcatup
-  ln -s /opt/apache-tomcat-8.5.45/bin/shutdown.sh /usr/local/bin/tomcatdown
-  tomcatup
-```
 #### check point :
 access tomcat application from browser on prot 8080  
 http://<Public_IP>:8080
@@ -46,10 +39,13 @@ find / -name context.xml
 ```
 above command gives 3 context.xml files. comment (<!-- & -->) `Value ClassName` field on files which are under webapp directory. 
 After that restart tomcat services to effect these changes
-```sh 
-tomcatdown
-tomcatup
-```
+
+vi /opt/apache-tomcat-8.5.45/webapps/manager/META-INF/context.xml
+vi /opt/apache-tomcat-8.5.45/webapps/host-manager/META-INF/context.xml
+
+/opt/apache-tomcat-8.5.45/bin/shutdown.sh
+/opt/apache-tomcat-8.5.45/bin/startup.sh
+
 Update users information in the tomcat-users.xml file
 goto tomcat home directory and Add below users to conf/tomcat-user.xml file
 ```sh
